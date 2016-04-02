@@ -8,4 +8,20 @@ class ApplicationController < ActionController::Base
 		redirect_to target_url
 		flash[flash_symbol] = flash_message
 	end
+
+	def logged_in_user
+		unless logged_in?
+			store_location
+			flash[:error] = "Please log in first."
+			redirect_to login_url
+		end
+	end
+
+	def correct_user
+		user = User.find_by(id: params[:user_id])
+		unless current_user == user
+			flash[:error] = "Access denied."
+			redirect_to root_url
+		end
+	end
 end

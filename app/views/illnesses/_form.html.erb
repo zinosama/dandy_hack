@@ -1,0 +1,50 @@
+<%= form_for @record, url: url, html: { class: ["ui", "form", "column"] } do |f| %>
+
+	<div class="ui container grid">
+		<%= f.fields_for :illness do |illness| %>
+			<div class="row">
+				<div class="column field">
+					<%= illness.label :name, "What illness were you contracted with?" %>
+					<%= illness.collection_select(:name, Illness.all, :name, :name, { include_blank: "Type in name of illness" }, { class: "ui fluid search dropdown"} ) %>
+				</div>
+			</div>
+		<% end %>
+		
+		<div class="two column stackable row">
+				<div class="column field">
+					<%= f.label :date_contracted %>
+					<%= f.text_field :date_contracted, placeholder: "day/month/year: 18/01/2013" %>
+				</div>
+				<div class="column field">
+					<%= f.label :date_recovered %>
+					<%= f.text_field :date_recovered, placeholder: "day/month/year: 18/01/2013" %>
+				</div>
+		</div>
+
+		<div class="row">
+			<div class="column field">
+				<%= f.label :symptoms %>
+				<%= f.text_area :symptoms, rows: 2, placeholder: "Please list your symptoms" %>
+			</div>
+		</div>
+
+		<%= f.fields_for :medicine do |medicine| %>
+			<div class="row">
+				<div class="column field">
+					<%= medicine.label :name, "What medicine did you take?" %>
+					<%= medicine.collection_select(:name, Medicine.all, :name, :name, { include_blank: "Type in name of medicine" }, { multiple: true, class: "ui fluid search dropdown"} ) %>
+				</div>
+			</div>
+		<% end %>
+
+		<div class="row">
+			<div class="field column">
+				<%= f.submit yield(:button_text), class: "ui blue inverted button" %>
+			</div>
+		</div>
+
+		<% if @record.persisted? %>
+			<%= link_to "Delete Record", users_vaccine_url(@record), method: :delete , class:"ui fluid inverted red button" %>
+		<% end %>
+	</div>
+<% end %>
