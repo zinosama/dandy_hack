@@ -22,11 +22,11 @@
 		</div>
 	<% else %>
 		<div class="ui cards">
-			<%= @records.each do |record| %>
+			<% @records.each do |record| %>
 				<div class="card">
 					<div class="content">
 						<div class="header"><%= record.illness.name %></div>
-						<div class="description"><%= @user.first_name %> was contracted with <%= record.illness.name %> on <%= record.display_contracted_date %>. <%= @user.he_or_she %> was cured on <%= record.display_recovered_date %>.</div>
+						<div class="description"><%= @user.first_name %> was contracted with <%= record.illness.name %> on <%= record.display_contracted_date %>. <%= @user.he_or_she.capitalize %> was cured on <%= record.display_recovered_date %>. <%= @user.he_or_she.capitalize %> has symptoms including <%= record.symptoms %></div>
 					</div>
 				</div>
 			<% end %>
