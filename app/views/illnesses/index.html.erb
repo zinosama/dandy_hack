@@ -2,10 +2,10 @@
 <% provide(:button_text, "Create Illness Record") %>
 <%= render 'shared/user_nav', medi: true %>
 
-<div class="row" id="deliveryInfoHeader" style="margin-top: 2em;">
-	<h4 class="ui horizontal divider header" class="locationEditTopDivider">
-	  <i class="heartbeat icon"></i>
-	  Existing Medical Records
+<div class="row" style="margin-top: 2em;">
+	<h4 class="ui horizontal divider header">
+	  <i class="teal heartbeat icon"></i>
+	  Existing Illness Records
 	</h4>
 </div>
 
@@ -26,7 +26,7 @@
 				<div class="card">
 					<div class="content">
 						<div class="header"><%= record.illness.name %></div>
-						<div class="description"><%= @user.first_name %> was contracted with <%= record.illness.name %> on <%= record.display_contracted_date %>. <%= @user.he_or_she.capitalize %> was cured on <%= record.display_recovered_date %>. <%= @user.he_or_she.capitalize %> has symptoms including <%= record.symptoms %></div>
+						<div class="description"><%= @user.first_name %> was contracted with <%= record.illness.name %> on <%= record.display_contracted_date %>. <%= @user.he_or_she.capitalize %> was cured on <%= record.display_recovered_date %>. <%= @user.he_or_she.capitalize %> has symptoms including "<%= record.symptoms %>"</div>
 					</div>
 				</div>
 			<% end %>
@@ -34,9 +34,45 @@
 	<% end %>
 </div>
 
+<div class="row" style="margin-bottom: 2em;">
+	<h4 class="ui horizontal divider header">
+	  <i class="heartbeat teal icon"></i>
+	  Existing Medicine Records
+	</h4>
+</div>
+
+<div class="row" style="margin-bottom: 3em;">
+	<% if @records.empty? %>
+		<div class="ui card">
+			<div class="content">
+				<div class="header">Ooops!</div>
+				<div class="description">
+					<p>You haven't recorded any medicine with us.</p>
+					<p>Register your medicine today by filling out the form below!</p>
+				</div>
+			</div>
+		</div>
+	<% else %>
+		<div class="ui cards">
+			<% @records.each do |record| %>
+				<% record.medicine_records.each do |medicine_record| %>
+					<div class="card">
+						<div class="content">
+							<div class="header"><%= medicine_record.medicine.name %></div>
+							<div class="description"><%= @user.first_name %> took <%= medicine_record.medicine.name %> between <%= record.display_contracted_date %> and <%= record.display_recovered_date %>.</div>
+						</div>
+					</div>
+				<% end %>
+			<% end %>
+		</div>
+	<% end %>
+</div>
+
+
+
 <div class="row">
 	<h4 class="ui horizontal divider header" class="locationEditTopDivider">
-	  <i class="heartbeat icon"></i>
+	  <i class="teal heartbeat icon"></i>
 	  Register New Medical Record
 	</h4>
 </div>
