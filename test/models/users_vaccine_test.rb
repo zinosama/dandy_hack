@@ -5,7 +5,7 @@ class UsersVaccineTest < ActiveSupport::TestCase
 	def setup
 		user = users(:one)
 		vaccine = vaccines(:one)
-		@users_vaccine = UsersVaccine.new( user: user, vaccine: vaccine, date_injected: DateTime.now )
+		@users_vaccine = UsersVaccine.new( user: user, vaccine: vaccine, date_injected: 20, month_injected: 10, year_injected: 2011 )
 	end
 
 	test 'should be valid' do
@@ -22,8 +22,24 @@ class UsersVaccineTest < ActiveSupport::TestCase
 		assert_not @users_vaccine.valid?
 	end
 
-	test 'should have a date injected' do
+	test 'date injected should be number' do
 		@users_vaccine.date_injected = ""
+		assert_not @users_vaccine.valid?
+		@users_vaccine.date_injected = "hi"
+		assert_not @users_vaccine.valid?
+	end
+
+	test 'month injected should be number' do
+		@users_vaccine.month_injected = ""
+		assert_not @users_vaccine.valid?
+		@users_vaccine.month_injected = "hi"
+		assert_not @users_vaccine.valid?
+	end
+
+	test 'year injected should be number' do
+		@users_vaccine.year_injected = ""
+		assert_not @users_vaccine.valid?
+		@users_vaccine.year_injected = "hi"
 		assert_not @users_vaccine.valid?
 	end
 end

@@ -19,4 +19,5 @@ class VaccineTest < ActiveSupport::TestCase
 		@vaccine.save
 		assert_not duplicate_vaccine.valid?
 	end
+
 end

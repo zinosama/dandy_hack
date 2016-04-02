@@ -5,6 +5,10 @@ class UsersVaccine < ActiveRecord::Base
 	validates :user, presence: true
 	validates :vaccine, presence: true
 
+	validates :year_injected, presence: true, numericality: true
+	validates :month_injected, presence: true, numericality: true
+	validates :date_injected, presence: true, numericality: true
+	
 	def inject_time
 		"#{self.month_injected}/#{self.date_injected}/#{self.year_injected}"
 	end

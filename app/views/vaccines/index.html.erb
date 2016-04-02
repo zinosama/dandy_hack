@@ -2,7 +2,7 @@
 <%= render 'shared/user_nav', medi: true %>
 
 <div class="row">
-	<div class="ui cards">
+	<div class="ui four cards">
 		<% if @vaccine_records.empty? %>
 			<div class="card">
 				<div class="content">
@@ -37,6 +37,9 @@
 
 <div class="row">
 	<%= form_for @vaccine, url: user_vaccines_url(@vaccine, user_id: @user), html: { class: ["ui", "form", "column"] } do |f| %>
+		<%= render 'shared/error_msgs', object: f.object %>
+		<%= render 'shared/error_msgs', object: @record %>
+
 		<div class="ui container grid">
 			<div class="row">
 				<div class="sixteen wide column field">
