@@ -44,6 +44,15 @@ class UsersVaccinesController < ApplicationController
 		end
 	end
 
+	def destroy
+		record = UsersVaccine.find(params[:id])
+		if record.vaccine.users_vaccines.size == 1
+			record.vaccine.destroy
+		end
+		record.destroy
+		redirect_and_flash(user_vaccines_url(record.user), :success, "Vaccine Record Deleted")
+	end
+
 	private 
 
 	def users_vaccine_params
@@ -54,7 +63,7 @@ class UsersVaccinesController < ApplicationController
 		if record.update_attributes(users_vaccine_params)
 			redirect_and_flash(user_vaccines_url(record.user), :success, "Vaccine Record Updated")
 		else
-			redirect_and_flash(user_vaccines_url(record.user), :error, "Please specify time of administration")
+			redirect_and_flash(edit_users_vaccine_url(record.user), :error, "Please specify time of administration")
 			return
 		end
 	end

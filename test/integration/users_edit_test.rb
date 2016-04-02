@@ -44,7 +44,7 @@ class UsersEditTest < ActionDispatch::IntegrationTest
 	test 'invalid update - account' do
 		patch user_url(@user), form_type: "account", user: { email: "sdjfisd", first_name: "a" * 51, last_name: "a" * 51, password: "hi", passwowrd_confirmation: "what up" }
 		assert_template 'users/edit'
-		assert_select 'li', count: 5
+		assert_select 'li', count: 4
 		assert_select 'div.ui.error.message', count: 1
 	end
 end

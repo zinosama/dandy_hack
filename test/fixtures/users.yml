@@ -9,3 +9,8 @@ one:
   last_name: sama
   email: dg@gmail.com
   password_digest: <%= User.digest('password') %>
+two:
+  first_name: ed
+  last_name: han
+  email: ed@gmail.com
+  password_digest: <%= User.digest('password') %>

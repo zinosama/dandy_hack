@@ -27,5 +27,9 @@
 		<div class='row'>
 			<%= f.submit yield(:button_text), class: "ui blue inverted button" %>
 		</div>
+
+		<% if @record.persisted? %>
+			<%= link_to "Delete Record", users_vaccine_url(@record), method: :delete , class:"ui fluid inverted red button" %>
+		<% end %>
 	</div>
 <% end %>
