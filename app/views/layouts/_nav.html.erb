@@ -1,0 +1,11 @@
+<%= nav_link("DandyHack", "#") %>
+<%= nav_link("Search", "#") %>
+<% if is_computer %><div class="right menu"><% end %>
+<% if logged_in? %>
+	<%= nav_link("Account", "#") %>
+	<%= link_to "Log Out", "#", method: "delete", class: "item" %>
+<% else %>
+	<%= nav_link("Sign Up", signup_path) %>
+	<%= nav_link("Log In", login_path) %>
+<% end %>
+<% if is_computer %></div><% end %>
