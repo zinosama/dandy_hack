@@ -8,7 +8,7 @@ class User < ActiveRecord::Base
 	before_save :downcase_email
 
 	has_many :users_vaccines
-	has_many :vaccines, through: :users_vaccine
+	has_many :vaccines, through: :users_vaccines
 
 	validates :first_name, presence: true, null: false, length: { maximum: 50 }
 	validates :last_name, presence: true, null: false, length: { maximum: 50 }
