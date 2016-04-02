@@ -1,0 +1,68 @@
+<% provide(:title, "Vaccine Records") %>
+<%= render 'shared/user_nav', medi: true %>
+
+<div class="row">
+	<div class="ui cards">
+		<% if @vaccine_records.empty? %>
+			<div class="card">
+				<div class="content">
+					<div class="header">Ooops!</div>
+					<div class="description">
+						<p>You haven't recorded any vaccine with us.</p>
+						<p>Register your vaccines today by filling out the form below!</p>
+					</div>
+				</div>
+			</div>
+		<% else %>
+			<% @vaccine_records.each do |vaccine_record| %>
+				<div class="card">
+					<div class="content">
+						<div class="header"><%= vaccine_record.vaccine.name %></div>
+						<div class="description">
+							This vaccine was administered on <%= vaccine_record.inject_time %>.
+						</div>
+					</div>
+				</div>
+			<% end %>
+		<% end %>
+	</div>
+</div>
+
+<div class="row" id="deliveryInfoHeader">
+	<h4 class="ui horizontal divider header" class="locationEditTopDivider">
+	  <i class="first aid icon"></i>
+	  Register New Vaccine
+	</h4>
+</div>
+
+<div class="row">
+	<%= form_for @vaccine, url: user_vaccines_url(@vaccine, user_id: @user), html: { class: ["ui", "form", "column"] } do |f| %>
+		<div class="ui container grid">
+			<div class="row">
+				<div class="sixteen wide column field">
+					<%= f.label :name, "What vaccine did you take?" %>
+					<%= icon_input_wrapper(f, :name, :write, { placeholder: "vaccine type" }) %>
+				</div>
+			</div>
+			<div class="three column row">
+				<%= f.fields_for :users_vaccine do |record_form| %>
+					<div class="column field">
+						<%= record_form.label :month_injected %>
+						<%= record_form.select(:month_injected, @months, { include_blank: "Select month" }, { class: "ui fluid dropdown" } ) %>
+					</div>
+					<div class="column field">
+						<%= record_form.label :date_injected %>
+						<%= record_form.select(:date_injected, @days, { include_blank: "Select date" }, { class: "ui fluid dropdown" } ) %>
+					</div>
+					<div class="column field">
+						<%= record_form.label :year_injected %>
+						<%= record_form.select(:year_injected, @years, { include_blank: "Select date" }, { class: "ui fluid dropdown" } ) %>
+					</div>
+				<% end %>
+			</div>
+			<div class='row'>
+				<%= f.submit "Register New Vaccine", class: "ui blue inverted button" %>
+			</div>
+		</div>
+	<% end %>
+</div>

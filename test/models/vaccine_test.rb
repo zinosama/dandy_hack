@@ -2,7 +2,7 @@ require 'test_helper'
 
 class VaccineTest < ActiveSupport::TestCase
 	def setup
-		@vaccine = Vaccine.new(name: "new vaccine")
+		@vaccine = Vaccine.new(name: "neww vaccine")
 	end
 
 	test 'should be valid' do
