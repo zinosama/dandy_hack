@@ -30,7 +30,9 @@ class UsersController < ApplicationController
 			flash[:success] = "Updated successfully"
 			redirect_to user_url(@user)
 		else
-			render 'show'
+			@blood_types = User.blood_types
+			template = params[:form_type] == 'personal' ? 'show' : 'edit'
+			render template
 		end
 	end
 
