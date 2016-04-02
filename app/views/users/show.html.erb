@@ -1,0 +1,21 @@
+<% provide(:title, "Profile") %>
+<%= render 'shared/user_nav' %>
+<div class="row">
+	<div class="ui container grid">
+		<div class="eight wide column">
+			<div class="ui fluid card">
+				
+				<div class="content">
+					<div class="header"><%= @user.full_name %></div>
+					<div class="description">
+						<p>This is the personal information card for <%= @user.full_name %>. <%= @user.first_name.capitalize %> is <%= @user.age || "?" %> years old. <%= @user.he_or_she.capitalize %> is <%= @user.height || "?" %> inch tall and weights <%= @user.weight || "?" %> lb. Based on this information, <%= @user.he_or_she.capitalize %> has a BMI of <%= @user.bmi %>. <%= @user.he_or_she.capitalize %> has a blood type of <%= @user.display_blood_type || "?" %>.</p><p> If there is anything wrong with this information, please update below!</p>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div class="row">
+	<%= render 'users/edit_personal_info' %>
+</div>
