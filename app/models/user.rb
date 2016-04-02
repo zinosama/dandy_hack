@@ -9,6 +9,8 @@ class User < ActiveRecord::Base
 
 	has_many :users_vaccines
 	has_many :vaccines, through: :users_vaccines
+	has_many :illnesses_users
+	has_many :illnesses, through: :illnesses_users
 
 	validates :first_name, presence: true, null: false, length: { maximum: 50 }
 	validates :last_name, presence: true, null: false, length: { maximum: 50 }

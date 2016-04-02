@@ -3,7 +3,7 @@
 		<%= nav_link("Personal Information", user_url(@user)) %>
 		<% if medi %>
 			<%= nav_link("Vaccine Records", user_vaccines_url(@user)) %>
-			<%= nav_link("Medical History", "#") %>
+			<%= nav_link("Medical History", user_illnesses_url(@user)) %>
 		<% else %>
 			<%= nav_link("Medical Records", user_vaccines_url(@user)) %>
 		<% end %>

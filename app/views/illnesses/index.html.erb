@@ -1,0 +1,46 @@
+<% provide(:title, "Medical History") %>
+<% provide(:button_text, "Create Illness Record") %>
+<%= render 'shared/user_nav', medi: true %>
+
+<div class="row" id="deliveryInfoHeader" style="margin-top: 2em;">
+	<h4 class="ui horizontal divider header" class="locationEditTopDivider">
+	  <i class="heartbeat icon"></i>
+	  Existing Medical Records
+	</h4>
+</div>
+
+<div class="row" style="margin-bottom: 3em;">
+	<% if @records.empty? %>
+		<div class="ui card">
+			<div class="content">
+				<div class="header">Ooops!</div>
+				<div class="description">
+					<p>You haven't recorded any illness with us.</p>
+					<p>Register your illness today by filling out the form below!</p>
+				</div>
+			</div>
+		</div>
+	<% else %>
+		<div class="ui cards">
+			<% @records.each do |record| %>
+				<div class="card">
+					<div class="content">
+						<div class="header"><%= record.illness.name %></div>
+						<div class="description"><%= @user.first_name %> was contracted with <%= record.illness.name %> on <%= record.display_contracted_date %>. <%= @user.he_or_she.capitalize %> was cured on <%= record.display_recovered_date %>. <%= @user.he_or_she.capitalize %> has symptoms including <%= record.symptoms %></div>
+					</div>
+				</div>
+			<% end %>
+		</div>
+	<% end %>
+</div>
+
+<div class="row">
+	<h4 class="ui horizontal divider header" class="locationEditTopDivider">
+	  <i class="heartbeat icon"></i>
+	  Register New Medical Record
+	</h4>
+</div>
+
+<div class="row">
+	<%= render 'illnesses/form', url: user_illnesses_users_url(@user) %>
+</div>

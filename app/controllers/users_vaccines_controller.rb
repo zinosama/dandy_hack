@@ -1,5 +1,8 @@
 class UsersVaccinesController < ApplicationController
-	
+	before_action :logged_in_user
+	before_action :correct_user, only: [:create]
+	before_action :correct_owner, only: [:edit, :update]
+
 	def create
 		user = User.find(params[:user_id])
 		vaccine = Vaccine.find_or_create_by(name: params[:users_vaccine][:vaccine][:name])
@@ -54,6 +57,15 @@ class UsersVaccinesController < ApplicationController
 	end
 
 	private 
+
+	def correct_owner
+		record = UsersVaccine.find_by(id: params[:id])
+		user = record.user
+		unless current_user == user
+			flash[:error] = "Access denied."
+			redirect_to root_url
+		end
+	end
 
 	def users_vaccine_params
 		params.require(:users_vaccine).permit(:date_injected, :month_injected, :year_injected)

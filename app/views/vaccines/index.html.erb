@@ -3,7 +3,7 @@
 
 <%= render 'shared/user_nav', medi: true %>
 
-<div class="row" id="deliveryInfoHeader" style="margin-top: 2em;">
+<div class="row" style="margin-top: 2em;">
 	<h4 class="ui horizontal divider header" class="locationEditTopDivider">
 	  <i class="first aid icon"></i>
 	  Existing Vaccine Records
@@ -11,9 +11,8 @@
 </div>
 
 <div class="row" style="margin-bottom: 3em;">
-	<div class="ui three cards">
 		<% if @vaccine_records.empty? %>
-			<div class="card">
+			<div class="ui card">
 				<div class="content">
 					<div class="header">Ooops!</div>
 					<div class="description">
@@ -23,21 +22,22 @@
 				</div>
 			</div>
 		<% else %>
+			<div class="ui cards">
 			<% @vaccine_records.each do |vaccine_record| %>
-				<div class="card">
-					<div class="content">
-						<div class="header"><%= link_to vaccine_record.vaccine.name, edit_users_vaccine_url(vaccine_record) %></div>
-						<div class="description">
-							This vaccine was administered on <%= vaccine_record.inject_time %>.
+					<div class="card">
+						<div class="content">
+							<div class="header"><%= link_to vaccine_record.vaccine.name, edit_users_vaccine_url(vaccine_record) %></div>
+							<div class="description">
+								This vaccine was administered on <%= vaccine_record.inject_time %>.
+							</div>
 						</div>
 					</div>
-				</div>
 			<% end %>
+			</div>
 		<% end %>
 	</div>
-</div>
 
-<div class="row" id="deliveryInfoHeader">
+<div class="row">
 	<h4 class="ui horizontal divider header" class="locationEditTopDivider">
 	  <i class="first aid icon"></i>
 	  Register New Vaccine

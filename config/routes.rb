@@ -5,6 +5,8 @@ Rails.application.routes.draw do
   resources :users, except: [:new] do
     resources :vaccines, only: [:index]
     resources :users_vaccines, only: [:create]
+    resources :illnesses, only: [:index]
+    resources :illnesses_users, only: [:create]
   end
 
   get 'login' => 'sessions#new'
@@ -12,6 +14,8 @@ Rails.application.routes.draw do
   delete 'logout' => 'sessions#destroy'
 
   resources :users_vaccines, only: [:edit, :update, :destroy]
+  resources :illnesses, only: [:new, :create]
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

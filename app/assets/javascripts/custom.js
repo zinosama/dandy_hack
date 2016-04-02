@@ -12,5 +12,10 @@ $(document).ready(function(){
     ;
   });
 
-    $('select.dropdown').dropdown();
+  $('select.dropdown').dropdown();
+
+  $('.search.ui.dropdown').dropdown({
+    allowAdditions: true
+  });
+
 });
