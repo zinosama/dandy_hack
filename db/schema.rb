@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160402153329) do
+ActiveRecord::Schema.define(version: 20160402154923) do
 
   create_table "users", force: :cascade do |t|
     t.string   "first_name",      null: false
@@ -29,6 +29,17 @@ ActiveRecord::Schema.define(version: 20160402153329) do
   end
 
   add_index "users", ["email"], name: "index_users_on_email"
+
+  create_table "users_vaccines", force: :cascade do |t|
+    t.integer  "user_id",       null: false
+    t.integer  "vaccine_id",    null: false
+    t.datetime "date_injected", null: false
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+  end
+
+  add_index "users_vaccines", ["user_id"], name: "index_users_vaccines_on_user_id"
+  add_index "users_vaccines", ["vaccine_id"], name: "index_users_vaccines_on_vaccine_id"
 
   create_table "vaccines", force: :cascade do |t|
     t.string   "name",       null: false
