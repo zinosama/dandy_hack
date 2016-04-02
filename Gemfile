@@ -40,7 +40,7 @@ group :development, :test do
   gem 'byebug'
   gem 'minitest-reporters'
   gem 'mini_backtrace'
-  # gem 'sqlite3'
+  gem 'sqlite3'
 end
 
 group :development do
@@ -52,4 +52,5 @@ end
 
 group :production do
 	gem 'pg'
+	gem 'rails_12factor'
 end
