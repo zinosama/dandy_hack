@@ -1,0 +1,2 @@
+module UsersVaccinesHelper
+end

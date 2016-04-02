@@ -1,0 +1,31 @@
+<%= form_for @record, url: url, html: { class: ["ui", "form", "column"] } do |f| %>
+
+	<div class="ui container grid">
+		<%= f.fields_for :vaccine do |vaccine| %>
+			<div class="row">
+				<div class="sixteen wide column field">
+					<%= vaccine.label :name, "What vaccine did you take?" %>
+					<%= icon_input_wrapper(vaccine, :name, :write, { placeholder: "#{(@record.vaccine && @record.vaccine.name) || 'vaccine type'}" }) %>
+				</div>
+			</div>
+		<% end %>
+		
+		<div class="three column row">
+				<div class="column field">
+					<%= f.label :month_injected %>
+					<%= f.select(:month_injected, @months, { include_blank: "Select month" }, { class: "ui fluid dropdown" } ) %>
+				</div>
+				<div class="column field">
+					<%= f.label :date_injected %>
+					<%= f.select(:date_injected, @days, { include_blank: "Select date" }, { class: "ui fluid dropdown" } ) %>
+				</div>
+				<div class="column field">
+					<%= f.label :year_injected %>
+					<%= f.select(:year_injected, @years, { include_blank: "Select date" }, { class: "ui fluid dropdown" } ) %>
+				</div>
+		</div>
+		<div class='row'>
+			<%= f.submit yield(:button_text), class: "ui blue inverted button" %>
+		</div>
+	</div>
+<% end %>

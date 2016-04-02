@@ -1,0 +1,12 @@
+<% provide(:button_text, "Update Record") %>
+<%= render 'shared/user_nav', medi: true %>
+
+<div class="ui breadcrumb" style="margin-top: 2em; margin-bottom: 2em;">
+  <%= link_to "Your Vaccine Records", user_vaccines_url(@user), class: "section" %>
+  <i class="right angle icon divider"></i>
+  <div class="active section">Edit Vaccine </div>
+</div>
+
+<div class="row">
+	<%= render 'vaccines/form', url: users_vaccine_url(@record) %>
+</div>
