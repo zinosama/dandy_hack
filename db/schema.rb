@@ -19,6 +19,11 @@ ActiveRecord::Schema.define(version: 20160402013646) do
     t.string   "email",           null: false
     t.string   "password_digest", null: false
     t.string   "remember_digest"
+    t.decimal  "weight"
+    t.decimal  "height"
+    t.integer  "blood_type"
+    t.integer  "gender"
+    t.integer  "age"
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
   end

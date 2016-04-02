@@ -11,4 +11,6 @@ $(document).ready(function(){
       .transition('fade')
     ;
   });
+
+    $('select.dropdown').dropdown();
 });

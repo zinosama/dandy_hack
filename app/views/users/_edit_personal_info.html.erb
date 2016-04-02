@@ -1,0 +1,31 @@
+<%= form_for @user, html: { class: ["ui", "form", "column"], id: "editPersonalInfoForm"} do |f| %>
+	<%= render 'shared/error_msgs', object: f.object %>
+	<%= hidden_field_tag :form_type, "personal" %>
+
+	<div class="field">
+		<%= f.label :weight, "Weight (lb)" %>
+		<%= icon_input_wrapper(f, :weight, :mail, { placeholder: "140.2" }) %>
+	</div>
+
+	<div class="field">
+		<%= f.label :height, "Height (inch)" %>
+		<%= icon_input_wrapper(f, :height, :write, { placeholder: "71.8" }) %>
+	</div>
+	
+	<div class="field">
+		<%= f.label :blood_type %>
+		<%= f.select(:blood_type, @blood_types, { include_blank: "Select blood type" }, { class: "ui fluid dropdown" } ) %>
+	</div>
+	
+	<div class="field">
+		<%= f.label :gender %>
+		<%= f.select(:gender, [['Male', 0], ['Female', 1]], { include_blank: "Select gender" }, { class: "ui fluid dropdown" } ) %>
+	</div>
+
+	<div class="field">
+		<%= f.label :age, "Age" %>
+		<%= icon_input_wrapper(f, :age, :write, { placeholder: "21" }) %>
+	</div>
+
+	<%= f.submit "Save", class: "ui teal basic button" %>
+<% end %>

@@ -78,4 +78,28 @@ class UserTest < ActiveSupport::TestCase
 		assert_not @user.valid?
 	end
 
+	test 'weight should be number' do
+		@user.weight = "hi"
+		assert_not @user.valid?
+	end
+
+	test 'height should be number' do
+		@user.height = "hi"
+		assert_not @user.valid?
+	end
+
+	test 'age should be number' do
+		@user.age = "hi"
+		assert_not @user.valid?
+	end
+
+	test 'gender should be number' do
+		@user.gender = "hi"
+		assert_not @user.valid?
+	end
+
+	test 'blood type should be number' do
+		@user.blood_type = "hi"
+		assert_not @user.valid?
+	end
 end
