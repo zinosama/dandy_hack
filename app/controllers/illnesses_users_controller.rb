@@ -27,7 +27,39 @@ class IllnessesUsersController < ApplicationController
 
 
 	def index
-		
+		if params[:query]
+			@illness = Illness.find_by(name: params[:query])
+			@num_inffected = @illness.users.count
+			@other_diseases = {}
+			@other_vaccines = {}
+			@illness.users.each do |user|
+				user.vaccines.each do |vaccine|
+					if @other_vaccines[vaccine.name]
+						@other_vaccines[vaccine.name] += 1
+					else
+						@other_vaccines[vaccine.name] = 1
+					end
+				end
+
+				user.illnesses.each do |illness|
+					unless illness == @illness 
+						if @other_diseases[illness.name]
+							@other_diseases[illness.name] += 1
+						else
+							@other_diseases[illness.name] = 1
+						end
+					end
+				end
+			end
+		end
+	end
+
+	def query
+		if params[:illnesses_user][:illness][:name] && !params[:illnesses_user][:illness][:name].empty?
+			redirect_to search_url(query: params[:illnesses_user][:illness][:name])
+		else 
+			redirect_and_flash(search_url, :error, "Empty search phrase")
+		end
 	end
 
 	private 

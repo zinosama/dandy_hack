@@ -1,6 +1,38 @@
 <% provide(:title, "Search") %>
 
 <div class="row">
+	<% if params[:query] %>
+		<div class="ui fluid card">
+			<div class="ui blue horizontal statistics" style="margin: 0 auto; margin-bottom: 2em; margin-top: 1em;">
+			  <div class="statistic">
+			    <div class="value">
+			    	<%= semantic_icon :users %>
+			    	<%= @num_inffected %>
+			    </div>
+			    <div class="label">
+			      Users Inffected with <%= @illness.name %>
+			    </div>
+			  </div>
+			</div>
+
+			<div class="ui statistics">
+			  <% for disease in @other_diseases do %>
+				  <div class="statistic">
+				    <div class="value">
+				    	<%= disease[1] %>
+				    </div>
+				    <div class="label">
+				      Users Also Inffected with <%= disease[0] %>
+				    </div>
+				  </div>
+				<% end %>
+			</div>
+
+		</div>
+	<% end %>
+</div>
+
+<div class="row">
 	<%= form_for :illnesses_user, url: query_url, html: { class: ["ui", "form", "column"] } do |f| %>
 		<div class="field">
 			<%= f.fields_for :illness do |illness| %>
@@ -9,8 +41,4 @@
 		</div>
 		<%= f.submit "Search", class: "ui button inverted blue" %>
 	<% end %>
-</div>
-
-<div class="row">
-
 </div>
