@@ -63,11 +63,15 @@ ActiveRecord::Schema.define(version: 20160402220229) do
     t.integer  "blood_type"
     t.integer  "gender"
     t.integer  "age"
+    t.integer  "father_id"
+    t.integer  "mother_id"
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
   end
 
   add_index "users", ["email"], name: "index_users_on_email"
+  add_index "users", ["father_id"], name: "index_users_on_father_id"
+  add_index "users", ["mother_id"], name: "index_users_on_mother_id"
 
   create_table "users_vaccines", force: :cascade do |t|
     t.integer  "user_id",        null: false

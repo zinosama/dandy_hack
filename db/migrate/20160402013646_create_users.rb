@@ -13,6 +13,9 @@ class CreateUsers < ActiveRecord::Migration
       t.integer :gender
       t.integer :age 
       
+      t.references :father, index: true
+      t.references :mother, index: true
+
       t.timestamps null: false
     end
   end

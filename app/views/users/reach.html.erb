@@ -1,0 +1,73 @@
+<% provide(:title, "Emergency Contact") %>
+<%= render 'shared/user_nav', medi:false %>
+
+<div class="row" style="margin-top: 2em;">
+	<h4 class="ui horizontal divider header">
+	  <i class="teal users aid icon"></i>
+	  Emergency Contact
+	</h4>
+</div>
+
+<div class="row">
+	<div class="ui container grid">
+		<div class="two column row">
+			<div class="column">
+				<div class="ui fluid card">
+					<div class="content">
+						<% if @user.father %>
+							<div class="header"><%= @user.father.full_name %></div>
+							<div class="description">
+								<%= @user.full_name %>'s father has been registered.
+							</div>
+						<% else %>
+							<div class="header">Oooops!</div>
+							<div class="description">
+								<%= @user.first_name.capitalize %> has not linked with father.
+							</div>
+						<% end %>
+					</div>
+				</div>
+			</div>
+			<div class="column">
+				<div class="ui fluid card">
+					<div class="content">
+						<% if @user.mother %>
+							<div class="header"><%= @user.mother.full_name %></div>
+							<div class="description">
+								<%= @user.full_name %>'s father has been registered.
+							</div>
+						<% else %>
+							<div class="header">Oooops!</div>
+							<div class="description">
+								<%= @user.first_name.capitalize %> has not linked with mother.
+							</div>
+						<% end %>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div class="row" style="margin-top: 3em;">
+	<h4 class="ui horizontal divider header">
+	  <i class="teal plus icon"></i>
+	  Add Emergency Contact
+	</h4>
+</div>
+
+<div class="row">
+	<%= form_for @user, url: connect_user_url(@user), method: :post, html: { class: ["ui", "form", "column"] } do |f| %>
+		<div class="field">
+			<%= f.label :email %>
+			<%= icon_input_wrapper(f, :email, :mail, { value: "" }) %>
+		</div>
+		<div class="column field">
+			<%= f.label :gender, "Father or mother?" %>
+			<%= f.select(:gender, [['father', 'father'], ['mother', 'mother']], {}, { class: "ui fluid dropdown" } ) %>
+		</div>
+		<div class="field">
+			<%= f.submit "Connect to user", class: "ui fluid inverted blue button" %>
+		</div>
+	<% end %> 
+</div>

@@ -1,5 +1,5 @@
 <div class="row">
-	<div class="ui teal stackable <%= medi ? 'four' : 'three' %> item menu">
+	<div class="ui teal stackable <%= medi ? 'five' : 'four' %> item menu">
 		<%= nav_link("Personal Information", user_url(@user)) %>
 		<% if medi %>
 			<%= nav_link("Vaccine Records", user_vaccines_url(@user)) %>
@@ -7,6 +7,7 @@
 		<% else %>
 			<%= nav_link("Medical Records", user_vaccines_url(@user)) %>
 		<% end %>
+		<%= nav_link "Emergency Contact", reach_user_url(@user) %>
 		<%= nav_link("Account Information", edit_user_url(@user)) %>
 	</div>
 </div>

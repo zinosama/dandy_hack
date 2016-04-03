@@ -7,6 +7,8 @@ Rails.application.routes.draw do
     resources :users_vaccines, only: [:create]
     resources :illnesses, only: [:index]
     resources :illnesses_users, only: [:create]
+    get 'reach', on: :member
+    post 'connect', on: :member
   end
 
   get 'login' => 'sessions#new'
@@ -16,6 +18,7 @@ Rails.application.routes.draw do
   resources :users_vaccines, only: [:edit, :update, :destroy]
   resources :illnesses, only: [:new, :create]
 
+  get 'search' => 'illnesses_users#index'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

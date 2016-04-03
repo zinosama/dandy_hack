@@ -36,6 +36,26 @@ class UsersController < ApplicationController
 		end
 	end
 
+	def reach
+		@user = User.find(params[:id])
+	end
+
+	def connect 
+		@user = User.find(params[:id])
+		parent = User.find_by(email: params[:user][:email])
+		if parent && params[:user][:gender] == "father"
+			@user.father = parent
+			@user.save
+			redirect_and_flash(reach_user_url(@user), :success, "Connected")
+		elsif parent
+			@user.mother = parent
+			@user.save
+			redirect_and_flash(reach_user_url(@user), :success, "Connected")
+		else
+			redirect_and_flash(reach_user_url(@user), :error, "Email is not registered")
+		end
+	end
+
 	private
 
 	def user_personal_params
