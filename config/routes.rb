@@ -18,7 +18,7 @@ Rails.application.routes.draw do
   resources :users_vaccines, only: [:edit, :update, :destroy]
   resources :illnesses, only: [:new, :create]
 
-  get 'search' => 'medicines#index'
+  get 'search' => 'illnesses_users#index'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
