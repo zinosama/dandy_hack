@@ -1,1 +1,16 @@
-index
+<% provide(:title, "Search") %>
+
+<div class="row">
+	<%= form_for :illnesses_user, url: query_url, html: { class: ["ui", "form", "column"] } do |f| %>
+		<div class="field">
+			<%= f.fields_for :illness do |illness| %>
+				<%= illness.collection_select(:name, Illness.all, :name, :name, { include_blank: "Type in name of illness" }, { class: "ui fluid search dropdown"} ) %>
+			<% end %>
+		</div>
+		<%= f.submit "Search", class: "ui button inverted blue" %>
+	<% end %>
+</div>
+
+<div class="row">
+
+</div>

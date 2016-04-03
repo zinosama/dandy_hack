@@ -1,20 +1,19 @@
 <!DOCTYPE html>
 <html>
 	<head>
-	  <title>DandyHack</title>
+	  <title>MedBook</title>
 		 <meta name="viewport" content="width=device-width, initial-scale=1">
 		 <meta name="mobile-web-app-capable" content="yes">
 	  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
 	  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
 	  <%= csrf_meta_tags %>
 	</head>
+
 	<body id="<%= yield(:body_class) %>">
 		<%= render 'layouts/header' %>
 		<div class="ui container grid">
 	    <%= render 'layouts/flash' %>
 			<%= yield %>
-	    
 	 	</div>
-
 	</body>
 </html>
