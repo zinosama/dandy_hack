@@ -12,6 +12,11 @@ class User < ActiveRecord::Base
 	has_many :illnesses_users
 	has_many :illnesses, through: :illnesses_users
 
+	has_many :kids, class_name: "User", foreign_key: "father_id"
+	has_many :kids, class_name: "User", foreign_key: "mother_id"
+	belongs_to :father, class_name: "User"
+	belongs_to :mother, class_name: "User"
+
 	validates :first_name, presence: true, null: false, length: { maximum: 50 }
 	validates :last_name, presence: true, null: false, length: { maximum: 50 }
 	validates :email, presence: true, length: { maximum: 255 }, format: { with: VALID_EMAIL_REGEX }, uniqueness: { case_sensitive: false }
