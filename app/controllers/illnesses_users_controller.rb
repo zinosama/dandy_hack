@@ -25,6 +25,11 @@ class IllnessesUsersController < ApplicationController
 		end
 	end
 
+
+	def index
+		
+	end
+
 	private 
 
 	def illnesses_user_params

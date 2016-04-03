@@ -1,1 +1,91 @@
-Home Page
+<% provide(:title, "MedBook") %>
+<% provide(:body_class, "homeMain") %>
+
+<div class="ui container grid">
+	<div class="row">
+		<div class="four wide column">
+			<div class="ui fluid special card">
+		    <div class="blurring dimmable image">
+		      <div class="ui dimmer">
+		        <div class="content">
+		          <div class="center">
+		            <div class="ui inverted button">Our Missions</div>
+		          </div>
+		        </div>
+		      </div>
+		      <img src="http://teachingonpurpose.org/wp-content/uploads/2014/10/mission.jpg">
+		    </div>
+				<div class="content">
+					<div class="header center aligned"><%= semantic_icon :trophy %>Mission</div>
+					<div class="description">In theory, patients have long had a right to obtain copies of their records, but federal officials say they receive large numbers of complaints from consumers frustrated in trying to exercise that right. Some doctors seem to believe that medical records are intended only for doctor-to-doctor communication, and that patients would not understand those records. According to Dr. Francis S. Collins, the director of the National Institutes of Health, consumers needed access to their records so they could “take more control over decisions regarding their health,” follow treatment plans and correct errors in the files. The goal of MedBook is to serve as a platform for patients to compile all the medical record they receive from different hospitals. Additionally, users with rare diseases or wants to contribute to health science can donate their medical record to the The Electronic Medical Records and Genomics (eMERGE) Network at the National Health Institute. </div>
+				</div>
+			</div>
+		</div>
+
+		<div class="four wide column">
+			<div class="ui fluid special card" style="margin-top: 29vh;">
+		    <div class="blurring dimmable image">
+		      <div class="ui dimmer">
+		        <div class="content">
+		          <div class="center">
+		            <div class="ui inverted button">Add Medical Record</div>
+		          </div>
+		        </div>
+		      </div>
+		      <img src="http://www.akronlegalnews.com/images/site/archive.jpg">
+		    </div>
+		    <div class="content">
+		      <a class="header">Aggregated Medical Records</a>
+		      <div class="description">Once you sign up, you will have the ability to add all the vaccination, medicine, and illness you experience in your life by clicking on the medical record tab. The tab will then divide up to two tabs, the vaccination record and medical history tabs. In each of these tabs, you can add different types of medical information. Through this compliment of information, we hope you will gain a deeper understanding of your health.</div>
+		    </div>
+		  </div>
+		</div>
+
+
+		<div class="four wide column">
+			<div class="ui fluid special card" style="margin-top: 3vh;">
+		    <div class="blurring dimmable image">
+		      <div class="ui dimmer">
+		        <div class="content">
+		          <div class="center">
+		            <div class="ui inverted button">Create Emergency Contact</div>
+		          </div>
+		        </div>
+		      </div>
+		      <img src="https://massage.elitecme.com/blog/wp-content/uploads/sites/3/2014/12/chronic-illness.jpg">
+		    </div>
+		    <div class="content">
+		      <a class="header">Emergency Contact</a>
+		      <div class="description">Users can also link emergency contacts to their account. In case of medical emergencies, the web will provide the hospitals with family contact information.</div>
+		    </div>
+		  </div>
+
+			<div class="ui fluid card" style="margin-top: 5vh;">
+		    <div class="content">
+		      <div class="header center aligned">Features <%= semantic_icon "loading maximize" %></div>
+		      <div class="description">MedBook offers platform that puts you in control of your medical health. In order to maximize the full benefits of MedBook, we recommend exploring all the features.</div>
+		    </div>
+		  </div>
+		</div>
+
+		<div class="four wide column">
+			<div class="ui fluid special card" style="margin-top: 18vh;">
+		    <div class="blurring dimmable image">
+		      <div class="ui dimmer">
+		        <div class="content">
+		          <div class="center">
+		            <div class="ui inverted button">Search Disease</div>
+		          </div>
+		        </div>
+		      </div>
+		      <img src="https://grad.unm.edu/aire/aire-images/rcr.gif">
+		    </div>
+		    <div class="content">
+		      <a class="header">Scientific Research</a>
+		      <div class="description">Users are encourage to donate their medical record to the NIH for scientific research. Users do have the options to choose to not donate their information. If a user decides to donate his or her information to the Electronic Medical Records and Genomics (eMERGE) Network at the NIH for medical research, then they must sign the NIH medical release form. You  can learn more about what you medical record will be used for <%= link_to "here", "https://www.genome.gov/27540473" %>.</div>
+		    </div>
+		  </div>
+		</div>
+
+	</div>
+</div>

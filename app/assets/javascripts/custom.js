@@ -18,4 +18,7 @@ $(document).ready(function(){
     allowAdditions: true
   });
 
+  $('.special .image').dimmer({
+    on: 'hover'
+  });
 });

@@ -6,3 +6,4 @@ class IllnessesController < ApplicationController
 		@record = IllnessesUser.new
 	end
 end
+# <%= debug(params) if Rails.env.development? %>
