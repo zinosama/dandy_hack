@@ -46,11 +46,11 @@ class UsersController < ApplicationController
 		if parent && params[:user][:gender] == "father"
 			@user.father = parent
 			@user.save
-			redirect_and_flash(reach_user_url(@user), :success, "Connected")
+			redirect_and_flash(reach_user_url(@user), :success, "Connected with father")
 		elsif parent
 			@user.mother = parent
 			@user.save
-			redirect_and_flash(reach_user_url(@user), :success, "Connected")
+			redirect_and_flash(reach_user_url(@user), :success, "Connected with mother")
 		else
 			redirect_and_flash(reach_user_url(@user), :error, "Email is not registered")
 		end
