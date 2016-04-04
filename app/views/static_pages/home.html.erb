@@ -9,14 +9,14 @@
 		      <div class="ui dimmer">
 		        <div class="content">
 		          <div class="center">
-		            <div class="ui inverted button">Our Missions</div>
+		            <div class="ui inverted button home"><%= link_to "Our Missions", root_url, class: "home" %></div>
 		          </div>
 		        </div>
 		      </div>
 		      <img src="http://teachingonpurpose.org/wp-content/uploads/2014/10/mission.jpg">
 		    </div>
 				<div class="content">
-					<div class="header center aligned"><%= semantic_icon :trophy %>Mission</div>
+					<div class="header center aligned"><%= semantic_icon :trophy %> Our Missions</div>
 					<div class="description">In theory, patients have long had a right to obtain copies of their records, but federal officials say they receive large numbers of complaints from consumers frustrated in trying to exercise that right. Some doctors seem to believe that medical records are intended only for doctor-to-doctor communication, and that patients would not understand those records. According to Dr. Francis S. Collins, the director of the National Institutes of Health, consumers needed access to their records so they could “take more control over decisions regarding their health,” follow treatment plans and correct errors in the files. The goal of MedBook is to serve as a platform for patients to compile all the medical record they receive from different hospitals. Additionally, users with rare diseases or wants to contribute to health science can donate their medical record to the The Electronic Medical Records and Genomics (eMERGE) Network at the National Health Institute. </div>
 				</div>
 			</div>
@@ -28,7 +28,7 @@
 		      <div class="ui dimmer">
 		        <div class="content">
 		          <div class="center">
-		            <div class="ui inverted button">Add Medical Record</div>
+		            <div class="ui inverted button home"><%= link_to "Add Medical Record", (current_user ? user_illnesses_url(current_user) : login_url), class: "home" %></div>
 		          </div>
 		        </div>
 		      </div>
@@ -48,7 +48,7 @@
 		      <div class="ui dimmer">
 		        <div class="content">
 		          <div class="center">
-		            <div class="ui inverted button">Create Emergency Contact</div>
+		            <div class="ui inverted button"><%= link_to "Create Emergency Contact", (current_user ? reach_user_url(current_user) : login_url), class: "home" %></div>
 		          </div>
 		        </div>
 		      </div>
@@ -74,7 +74,7 @@
 		      <div class="ui dimmer">
 		        <div class="content">
 		          <div class="center">
-		            <div class="ui inverted button">Search Disease</div>
+		            <div class="ui inverted button"><%= link_to "Search Disease", search_url, class: "home" %></div>
 		          </div>
 		        </div>
 		      </div>
