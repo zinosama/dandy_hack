@@ -11,7 +11,6 @@ class ApplicationController < ActionController::Base
 
 	def logged_in_user
 		unless logged_in?
-			store_location
 			flash[:error] = "Please log in first."
 			redirect_to login_url
 		end
@@ -19,9 +18,6 @@ class ApplicationController < ActionController::Base
 
 	def correct_user
 		user = User.find_by(id: params[:user_id])
-		unless current_user == user
-			flash[:error] = "Access denied."
-			redirect_to root_url
-		end
+		redirect_and_flash( root_url, :error, "Access denied.") unless current_user == user
 	end
 end

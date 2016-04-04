@@ -9,6 +9,8 @@ class UsersVaccine < ActiveRecord::Base
 	validates :month_injected, presence: true, numericality: true
 	validates :date_injected, presence: true, numericality: true
 	
+	before_destroy :check_vaccine
+
 	def inject_time
 		"#{self.month_injected}/#{self.date_injected}/#{self.year_injected}"
 	end
@@ -24,4 +26,10 @@ class UsersVaccine < ActiveRecord::Base
 	def self.months
 		(1..12).map{ |month| month }
 	end
+
+	private
+
+	def check_vaccine
+		self.vaccine.destroy if self.vaccine.users_vaccines.size == 1
+	end	
 end

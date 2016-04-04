@@ -7,19 +7,12 @@ class UsersVaccinesController < ApplicationController
 		user = User.find(params[:user_id])
 		vaccine = Vaccine.find_or_create_by(name: params[:users_vaccine][:vaccine][:name])
 		unless vaccine
-			flash[:error] = "Please provide the vaccine name and administraton time"
-			redirect_to user_vaccines_url(user)
+			redirect_and_flash( user_vaccines_url(user), :error, "Error: Missing vaccine information" )
 			return
 		end
 		record = user.users_vaccines.build(users_vaccine_params)
 		record.vaccine = vaccine
-		if record.save
-			flash[:success] = "New Record Added"
-			redirect_to user_vaccines_url(user)
-		else
-			flash[:error] = "Please provide the vaccine name and administraton time"
-			redirect_to user_vaccines_url(user)
-		end
+		record.save ? redirect_and_flash( user_vaccines_url(user), :success, "New Record Added" ) : redirect_and_flash( user_vaccines_url(user), :error, "Error: Missing vaccine information" )
 	end
 
 	def edit
@@ -49,9 +42,6 @@ class UsersVaccinesController < ApplicationController
 
 	def destroy
 		record = UsersVaccine.find(params[:id])
-		if record.vaccine.users_vaccines.size == 1
-			record.vaccine.destroy
-		end
 		record.destroy
 		redirect_and_flash(user_vaccines_url(record.user), :success, "Vaccine Record Deleted")
 	end
@@ -61,10 +51,7 @@ class UsersVaccinesController < ApplicationController
 	def correct_owner
 		record = UsersVaccine.find_by(id: params[:id])
 		user = record.user
-		unless current_user == user
-			flash[:error] = "Access denied."
-			redirect_to root_url
-		end
+		redirect_and_flash( root_url, :error, "Access denied" ) unless current_user == user
 	end
 
 	def users_vaccine_params
