@@ -9,6 +9,11 @@ class VaccineTest < ActiveSupport::TestCase
 		assert @vaccine.valid?		
 	end
 
+	test 'name should be present' do
+		@vaccine.name = ""
+		assert_not @vaccine.valid?
+	end
+
 	test 'name should not be too longer' do
 		@vaccine.name = "a" * 101
 		assert_not @vaccine.valid?

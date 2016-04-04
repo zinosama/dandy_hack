@@ -16,7 +16,7 @@ class UsersVaccinesCreateTest < ActionDispatch::IntegrationTest
 		end
 
 		assert_redirected_to user_vaccines_url(@user)
-		assert_not flash.empty?
+		assert_not flash[:success].empty?
 		follow_redirect!
 
 		assert_select 'a', text: 'new vaccine', count: 1
@@ -36,7 +36,7 @@ class UsersVaccinesCreateTest < ActionDispatch::IntegrationTest
 			post user_users_vaccines_url(@user), users_vaccine: { date_injected: "", month_injected: "", year_injected: "", vaccine: { name: "" } }
 		end
 		assert_redirected_to user_vaccines_url(@user)
-		assert_not flash.empty?
+		assert_not flash[:error].empty?
 	end
 
 end
