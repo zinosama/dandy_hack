@@ -4,3 +4,9 @@
 # model remove the '{}' from the fixture names and add the columns immediately
 # below each fixture, per the syntax in the comments below
 #
+one: 
+  user: two
+  vaccine: one
+  date_injected: 1
+  month_injected: 1
+  year_injected: 2011
