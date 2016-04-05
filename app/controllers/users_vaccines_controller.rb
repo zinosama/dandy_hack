@@ -1,7 +1,7 @@
 class UsersVaccinesController < ApplicationController
 	before_action :logged_in_user
 	before_action :correct_user, only: [:create]
-	before_action :correct_owner, only: [:edit, :update]
+	before_action :correct_owner, only: [:edit, :update, :destroy]
 
 	def create
 		user = User.find(params[:user_id])
