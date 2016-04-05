@@ -1,4 +1,5 @@
 class IllnessesUsersController < ApplicationController
+	before_action :logged_in_user, only: [:create]
 
 	def create
 		@user = User.find(params[:user_id])
@@ -69,7 +70,7 @@ class IllnessesUsersController < ApplicationController
 	end
 
 	def medicine_present?
-		params[:illnesses_user][:medicine][:name].size != 1
+		params[:illnesses_user][:medicine][:name].size != 1 && !params[:illnesses_user][:medicine][:name].empty?
 	end
 
 	def illness_present?
