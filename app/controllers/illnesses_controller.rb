@@ -1,4 +1,5 @@
 class IllnessesController < ApplicationController
+	before_action :logged_in_user
 
 	def index
 		@user = User.find(params[:user_id])
@@ -6,4 +7,3 @@ class IllnessesController < ApplicationController
 		@record = IllnessesUser.new
 	end
 end
-# <%= debug(params) if Rails.env.development? %>
