@@ -2,7 +2,7 @@ require 'test_helper'
 
 class IllnessTest < ActiveSupport::TestCase
 	def setup
-		@illness = Illness.new(name: "Cold")
+		@illness = Illness.new(name: "Flu")
 	end
 
 	test 'should be valid' do

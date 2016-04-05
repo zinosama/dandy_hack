@@ -12,6 +12,7 @@ class IllnessesUser < ActiveRecord::Base
 	validates :symptoms, allow_nil: true, length: { maximum: 255 }
 
 	validate :cannot_recover_before_contracted
+
 	def display_contracted_date
 		self.date_contracted.strftime("%B %e, %Y")
 	end
@@ -20,15 +21,18 @@ class IllnessesUser < ActiveRecord::Base
 		self.date_recovered.strftime("%B %e, %Y")
 	end
 
-	def translate_time
-		self.date_contracted = DateTime.parse(self.date_contracted) if self.date_contracted  
-		self.date_recovered = DateTime.parse(self.date_recovered) if self.date_recovered
-	end
-
 	private 
 
 	def cannot_recover_before_contracted
-		errors.add(:date_recovered, "can't be before contracted date") if date_recovered < date_contracted
+		begin
+			result = date_recovered > date_contracted
+		rescue
+			errors.add(:date_recovered, "can't be before contracted date")
+		else
+			errors.add(:date_recovered, "can't be before contracted date") unless result	
+		end
 	end
+
+
 
 end
