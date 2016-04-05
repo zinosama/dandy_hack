@@ -4,7 +4,7 @@ class UsersVaccinesDestroyTest < ActionDispatch::IntegrationTest
 
 	def setup
 		@user = users(:one)
-		@vaccine = vaccines(:one)
+		@vaccine = vaccines(:two)
 		@record = @user.users_vaccines.create(vaccine: @vaccine, date_injected: 1, month_injected: 1, year_injected: 2011)
 	end
 

@@ -4,7 +4,7 @@ class UsersVaccinesEditTest < ActionDispatch::IntegrationTest
 
 	def setup
 		@user = users(:one)
-		@vaccine = vaccines(:one)
+		@vaccine = Vaccine.create( name: "flu" )
 		@record = @user.users_vaccines.create(vaccine: @vaccine, date_injected: 1, month_injected: 1, year_injected: 2011)
 	end
 
@@ -33,8 +33,6 @@ class UsersVaccinesEditTest < ActionDispatch::IntegrationTest
 		assert_equal 3, @record.reload.date_injected
 		assert_equal 3, @record.reload.month_injected
 		assert_equal 2013, @record.reload.year_injected
-		vaccine_name = @vaccine.name
-		assert_not_equal vaccine_name, @vaccine.reload.name
 		assert_equal "hello", @vaccine.reload.name
 	end
 

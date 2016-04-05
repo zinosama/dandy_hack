@@ -7,20 +7,14 @@ class IllnessesUsersController < ApplicationController
 			illness = Illness.find_or_create_by(name: params[:illnesses_user][:illness][:name])
 			record = @user.illnesses_users.build(illnesses_user_params)
 			record.illness = 	illness
-			# record.translate_time
+
 			if record.save
-				if medicine_present?
-					params[:illnesses_user][:medicine][:name].each do |name|
-						unless name.empty?
-							medicine = Medicine.find_or_create_by(name: name)
-							MedicineRecord.find_or_create_by(illnesses_user: record, medicine: medicine)
-						end
-					end
-				end
+				link_medicine(record) if medicine_present?
 				redirect_and_flash(user_illnesses_url(@user), :success, "New Illness Recorded")
 			else
 				redirect_and_flash(user_illnesses_url(@user), :error, "Error. Please ensure dates are entered in the right format")
 			end
+
 		else
 			redirect_and_flash(user_illnesses_url(@user), :error, "Error. Please enter a name for your illness")
 		end
@@ -75,5 +69,14 @@ class IllnessesUsersController < ApplicationController
 
 	def illness_present?
 		params[:illnesses_user][:illness][:name] && !params[:illnesses_user][:illness][:name].empty?
+	end
+
+	def link_medicine(record)
+		params[:illnesses_user][:medicine][:name].each do |name|
+			unless name.empty?
+				medicine = Medicine.find_or_create_by(name: name)
+				MedicineRecord.find_or_create_by(illnesses_user: record, medicine: medicine)
+			end
+		end
 	end
 end
